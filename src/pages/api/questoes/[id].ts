@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import questoes from "../bancoDeQuestoes";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.query;
-    res.status(200).json({
-        id,
-        name: "Junim",
-    });
+    res.status(200).json(questoes[0].converterParaObjeto());
 }
