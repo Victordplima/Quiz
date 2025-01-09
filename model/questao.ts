@@ -36,23 +36,40 @@ export default class QuestaoModel {
     }
 
     get respondida() {
-        for (let respostas of this.respostas) {
-            if (respostas.revelada) return true;
+        for (let resposta of this.respostas) {
+            if (resposta.revelada) return true;
         }
         return false;
     }
 
-    embaralharRespostas(): QuestaoModel{
-        let respostasEmbaralhadas = embaralhar(this.#respostas)
-        return new QuestaoModel(this.#id, this.#enunciado, respostasEmbaralhadas, this.#acertou)
+    responderCom(indice: number): QuestaoModel {
+        const acertou = this.#respostas[indice]?.certa;
+        const respostas = this.#respostas.map((resposta, i) => {
+            const respostaSelecionada = indice === i;
+            const deveRevelar = respostaSelecionada || resposta.certa;
+            return deveRevelar ? resposta.revelar() : resposta;
+        });
+        return new QuestaoModel(this.id, this.#enunciado, respostas, acertou);
     }
 
-    converterParaObjeto(){
-        return{
+    embaralharRespostas(): QuestaoModel {
+        let respostasEmbaralhadas = embaralhar(this.#respostas);
+        return new QuestaoModel(
+            this.#id,
+            this.#enunciado,
+            respostasEmbaralhadas,
+            this.#acertou
+        );
+    }
+
+    converterParaObjeto() {
+        return {
             id: this.#id,
             enunciado: this.#enunciado,
-            respostas: this.#respostas.map(resp => resp.converterParaObjeto()),
-            acertou: this.#acertou
-        }
+            respostas: this.#respostas.map((resp) =>
+                resp.converterParaObjeto()
+            ),
+            acertou: this.#acertou,
+        };
     }
 }
