@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Questao from "../../components/Questao";
 import QuestaoModel from "../../model/questao";
 import RespostaModel from "../../model/resposta";
+import Botao from "../../components/Botao";
 
 const questaoMock = new QuestaoModel(1, "Melhor cor", [
     RespostaModel.errada("verde"),
@@ -32,6 +33,7 @@ export default function Home() {
         <div
             style={{
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100vh",
@@ -43,6 +45,7 @@ export default function Home() {
                 respostaFornecida={respostaFornecida}
                 tempoEsgotado={tempoEsgotado}
             />
+            <Botao texto="Próxima" href="/resultado"/>
         </div>
     );
 }
