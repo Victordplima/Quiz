@@ -9,12 +9,12 @@ export default class RespostaModel {
         this.#revelada = revelada;
     }
 
-    static certa(valor: string){
-        return new RespostaModel(valor, true)
+    static certa(valor: string) {
+        return new RespostaModel(valor, true);
     }
 
-    static errada(valor: string){
-        return new RespostaModel(valor, false)
+    static errada(valor: string) {
+        return new RespostaModel(valor, false);
     }
 
     get valor() {
@@ -30,14 +30,18 @@ export default class RespostaModel {
     }
 
     revelar() {
-        return new RespostaModel(this.#valor, this.#certa, true)
+        return new RespostaModel(this.#valor, this.#certa, true);
     }
 
-    converterParaObjeto(){
-        return{
+    static criarUsandoObjeto(obj: RespostaModel): RespostaModel {
+        return new RespostaModel(obj.valor, obj.certa, obj.revelada);
+    }
+
+    converterParaObjeto() {
+        return {
             valor: this.#valor,
             certa: this.#certa,
-            revelada: this.#revelada
-        }
+            revelada: this.#revelada,
+        };
     }
 }
