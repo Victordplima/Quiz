@@ -50,8 +50,11 @@ export default function Home() {
 
     function irPraProximoPasso() {
         const proximoId = idProximaPergunta();
-        //@typescript-eslint/no-unused-expressions
-        proximoId ? irPraProximaQuestao(proximoId) : finalizar();
+        if (proximoId === undefined) {
+            finalizar();
+        } else {
+            irPraProximaQuestao(proximoId);
+        }
     }
 
     function irPraProximaQuestao(proximoId: number) {
