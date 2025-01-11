@@ -3,7 +3,7 @@ import Estatistica from "../../components/Estatistica";
 import styles from "../styles/Resultado.module.css";
 import { useRouter } from "next/router";
 
-export default function resultado() {
+export default function Resultado() {
     const router = useRouter();
 
     const total = router.query.total ? +router.query.total : 0;
@@ -18,7 +18,7 @@ export default function resultado() {
                 <Estatistica texto="Certas" valor={certas} />
                 <Estatistica texto="Percentual" valor={`${percentual}%`} />
             </div>
-            <Botao href="/" texto="Tentar novamente"/>
+            <Botao href="/" texto="Tentar novamente" />
         </div>
     );
 }

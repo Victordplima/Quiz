@@ -1,7 +1,7 @@
 import styles from "../src/styles/Estatistica.module.css";
 
 interface EstatisticaProps {
-    valor: any;
+    valor: string | number;
     texto: string;
     corFundo?: string;
     corFonte?: string;
@@ -19,9 +19,7 @@ export default function Estatistica(props: EstatisticaProps) {
             >
                 {props.valor}
             </div>
-            <div className={styles.texto}>
-                {props.texto}
-            </div>
+            <div className={styles.texto}>{props.texto}</div>
         </div>
     );
 }

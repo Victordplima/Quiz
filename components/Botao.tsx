@@ -4,7 +4,7 @@ import Link from "next/link";
 interface BotaoProps {
     href?: string;
     texto: string;
-    onClick?: (e: any) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Botao(props: BotaoProps) {

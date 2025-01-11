@@ -30,7 +30,9 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0]);
+        if (idsDasQuestoes.length > 0) {
+            carregarQuestao(idsDasQuestoes[0]);
+        }
     }, [idsDasQuestoes]);
 
     function questaoRespondida(questaoRespondida: QuestaoModel) {
@@ -48,6 +50,7 @@ export default function Home() {
 
     function irPraProximoPasso() {
         const proximoId = idProximaPergunta();
+        //@typescript-eslint/no-unused-expressions
         proximoId ? irPraProximaQuestao(proximoId) : finalizar();
     }
 
@@ -65,14 +68,14 @@ export default function Home() {
         });
     }
 
+    const ultimaQuestao = idProximaPergunta() === undefined;
+
     return questao ? (
         <Questionario
             questao={questao}
-            ultima={idProximaPergunta() === undefined}
+            ultima={ultimaQuestao}
             questaoRespondida={questaoRespondida}
             irPraProximoPasso={irPraProximoPasso}
         />
-    ) : (
-        null
-    );
+    ) : null;
 }
