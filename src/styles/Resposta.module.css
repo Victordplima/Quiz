@@ -4,19 +4,33 @@
     width: 80%;
     min-width: 500px;
     margin: 10px;
+    perspective: 1000px;
 }
 
-.conteudoResposta{
+.conteudoResposta {
     position: relative;
     display: flex;
     flex: 1;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
-.frente, .verso {
+.respostaRevelada.conteudoResposta {
+    transform: rotateY(180deg);
+}
+
+.frente,
+.verso {
     display: flex;
     height: 100%;
     width: 100%;
     position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.verso{
+    transform: rotateY(180deg);
 }
 
 .frente {
@@ -41,10 +55,11 @@
 }
 
 .errada {
-    background-color: #E44A4C;
+    background-color: #e44a4c;
 }
 
-.certa .valor, .errada .valor{
+.certa .valor,
+.errada .valor {
     font-size: 1.5rem;
 }
 
