@@ -1,6 +1,5 @@
 <h1 align="center">Quiz</h1>
 
----
 <p align="center">
     <a href="#sobre">Sobre</a> •
     <a href="#instalacao">Instalação</a>
